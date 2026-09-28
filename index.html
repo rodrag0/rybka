@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#020403">
+  <meta name="description" content="An unnecessarily technical explanation for missing someone one building away.">
+  <title>loading rybka...</title>
+  <link rel="stylesheet" href="css/default.css">
+  <script src="js/matrix-reveal.js" defer></script>
+  <script src="js/interactions.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#choices">skip to the important bit</a>
+
+  <main class="experience" id="experience">
+    <section class="terminal-panel" aria-labelledby="page-title">
+      <h1 class="sr-only" id="page-title">A very serious investigation into why I miss Lisa</h1>
+      <div class="terminal-topbar" aria-hidden="true">
+        <span class="terminal-dot"></span>
+        <span class="terminal-label">distance_problem.exe</span>
+        <span class="terminal-status" id="terminal-status">running</span>
+      </div>
+      <div class="terminal" id="terminal" aria-hidden="true">
+        <span class="cursor" id="terminal-cursor">_</span>
+      </div>
+      <p class="sr-only" id="screen-reader-status" aria-live="polite"></p>
+    </section>
+
+    <section class="portrait-section" id="portrait-section" aria-label="Binary portrait of Lisa">
+      <div class="portrait-frame" id="portrait-frame">
+        <div class="portrait-viewport" id="portrait-viewport">
+          <div class="portrait-mask" id="portrait-mask">
+            <div class="portrait-scale" id="portrait-scale"></div>
+          </div>
+          <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+          <div class="reveal-line" id="reveal-line" aria-hidden="true"></div>
+          <p class="portrait-error" id="portrait-error" role="alert" hidden>
+            portrait data got lost somewhere between the buildings :(
+          </p>
+        </div>
+        <div class="signal-row" aria-hidden="true">
+          <span>signal: <b id="signal-value">0%</b></span>
+          <span>distance: <b>unacceptable</b></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="messages" id="messages" aria-label="Messages for Lisa" aria-live="polite"></section>
+
+    <section class="choices" id="choices" aria-label="Choose a response" hidden>
+      <p class="choice-prompt">response required:</p>
+      <div class="choice-arena" id="choice-arena">
+        <button class="choice-button choice-button--yes" id="yes-button" type="button">
+          I miss you too
+        </button>
+        <button class="choice-button choice-button--wrong" id="wrong-button" type="button">
+          sounds like a you problem
+        </button>
+      </div>
+    </section>
+
+    <section class="ending" id="ending" aria-live="polite"></section>
+
+    <nav class="controls" aria-label="Animation controls">
+      <button class="text-button" id="skip-button" type="button">skip intro</button>
+      <button class="text-button" id="motion-button" type="button" aria-pressed="false">pause digits</button>
+      <button class="text-button" id="replay-button" type="button" hidden>again?</button>
+    </nav>
+  </main>
+
+  <noscript>
+    <p class="no-script">baby, JavaScript is off. I still miss you. yes, from the next building.</p>
+  </noscript>
+</body>
+</html>
