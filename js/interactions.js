@@ -33,6 +33,8 @@
   let evasionCount = 0;
   let choiceBusy = false;
   let digitsPaused = false;
+  let suppressWrongClick = false;
+  let suppressWrongClickTimer = 0;
 
   const mainCopy = [
     ["baby", 360],
@@ -43,7 +45,7 @@
     ["like actually what did you do to me hahaha", 720],
     ["I see you all the fucking time\nand somehow I'm here missing you again", 920],
     ["so yeah", 520],
-    ["I made you a whole fucking website\ninstead of walking to the next building", 920],
+   ["I made you a fucking website\ninstead of walking to the next building but tbf you are in a boring workshop", 920],
     ["very normal 👍🏽", 0]
   ];
 
@@ -106,6 +108,8 @@
 
   function resetWrongButton() {
     evasionCount = 0;
+    suppressWrongClick = false;
+    window.clearTimeout(suppressWrongClickTimer);
     wrongButton.textContent = "sounds like a you problem";
     wrongButton.classList.remove("is-escaping");
     wrongButton.style.removeProperty("--escape-x");
@@ -302,7 +306,17 @@
   }
 
   yesButton.addEventListener("click", chooseYes);
-  wrongButton.addEventListener("click", chooseWrong);
+  wrongButton.addEventListener("click", (event) => {
+    if (suppressWrongClick) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      suppressWrongClick = false;
+      window.clearTimeout(suppressWrongClickTimer);
+      return;
+    }
+
+    chooseWrong();
+  });
 
   wrongButton.addEventListener("pointerenter", (event) => {
     if (event.pointerType === "mouse") moveWrongButton();
@@ -311,6 +325,12 @@
   wrongButton.addEventListener("pointerdown", (event) => {
     if (event.pointerType !== "mouse" && !reducedMotion && evasionCount < 3) {
       event.preventDefault();
+      event.stopPropagation();
+      suppressWrongClick = true;
+      window.clearTimeout(suppressWrongClickTimer);
+      suppressWrongClickTimer = window.setTimeout(() => {
+        suppressWrongClick = false;
+      }, 500);
       moveWrongButton();
     }
   });
