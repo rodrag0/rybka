@@ -158,7 +158,7 @@
     await wait(460);
     if (!(await typeTerminalLine("> ...", id))) return;
     await wait(620);
-    if (!(await typeTerminalLine("> one building away.", id))) return;
+    if (!(await typeTerminalLine("> couple buildings away.", id))) return;
     addTerminalLineInstant("");
     await wait(680);
 
